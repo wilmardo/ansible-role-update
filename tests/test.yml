@@ -1,0 +1,21 @@
+---
+- hosts: all
+  become: yes
+  roles:
+    - role: php
+    - role: composer
+    - role: "{{ lookup('env', 'TRAVIS_REPO_SLUG') | basename }}" #Gets only the repository name
+
+  vars:
+    php_packages:
+      - php-cli
+      - php-common
+      - php-mysql
+      - php-xml
+      - php-mbstring
+
+  post_tasks:
+    - name: Grab system Logs
+      shell: "PAGER=cat journalctl -xn || cat /var/log/messages || cat /var/log/syslog"
+      changed_when: false
+      ignore_errors: yes

@@ -1,0 +1,3 @@
+---
+- include: update-packages.yml
+- include: update-composer.yml
