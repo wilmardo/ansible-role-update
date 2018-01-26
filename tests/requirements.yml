@@ -1,0 +1,8 @@
+- name: travis-lxc
+  src: lae.travis-lxc
+
+- name: composer
+  src: geerlingguy.composer
+
+- name: php
+  src: geerlingguy.php
